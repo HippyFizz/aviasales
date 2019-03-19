@@ -1,0 +1,20 @@
+Debug: true
+
+Redis:
+  Addr: localhost:6379
+  Password: ""
+  DB: 0
+  Expiration: 60
+
+Aviasales:
+  Url: https://places.aviasales.ru
+
+Server:
+  Port: 7000
+
+Worker:
+  Count: 2
+  UpdateInterval: 30
+  Expiration: 60
+  LogToFile: false
+  LogFilename: worker.log

@@ -1,0 +1,5 @@
+vendor/*
+!vendor/vendor.json
+config/local.yaml
+aviasales.postman_collection.json
+README.md

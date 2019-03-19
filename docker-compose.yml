@@ -1,0 +1,39 @@
+version: '2.1'
+
+volumes:
+  redisdata_aviasales:
+
+networks:
+  aviasales:
+
+services:
+  aviasales-redis:
+    container_name: aviasales-redis
+    image: redis
+    restart: always
+    volumes:
+    - redisdata_aviasales:/data
+    networks:
+    - aviasales
+  avisales-api:
+    container_name: aviasales-api
+    image: aviasales-test
+    build:
+      context: .
+    restart: on-failure
+    networks:
+    - aviasales
+    command: web
+    depends_on:
+    - aviasales-redis
+    ports:
+    - '7000:7000'
+  avisales-worker:
+    container_name: aviasales-worker
+    image: aviasales-test
+    restart: on-failure
+    networks:
+    - aviasales
+    command: worker
+    depends_on:
+    - avisales-api
